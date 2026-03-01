@@ -1,6 +1,6 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# 🧠 Actividad Sumativa – Desarrollo Orientado a Objetos I (POO)
+# 🧠 Actividad Sumativa – Desarrollo Orientado a Objetos II
 
 ## 👤 Autor del proyecto
 - **Nombre completo:** Roxana Villarroel Liberona  
@@ -12,49 +12,48 @@
 
 ## 📘 Descripción general del sistema
 
-Este proyecto corresponde a la **Actividad Sumativa de la asignatura Desarrollo Orientado a Objetos II**.  
+Este proyecto corresponde a la **Actividad Sumativa de la asignatura Desarrollo Orientado a Objetos II**.
 
-Se desarrolló un sistema en **Java** que modela la gestión de pedidos de una empresa de delivery llamada **SpeedFast**, incorporando principios de Programación Orientada a Objetos y **concurrencia con hilos (Threads)**.
+Se desarrolló un sistema en **Java** que implementa un **CRUD completo (Crear, Listar, Actualizar y Eliminar)** para la gestión de:
 
-El sistema permite:
+- 👤 Repartidores  
+- 📦 Pedidos  
 
-- Registrar pedidos
-- Asignar repartidores
-- Despachar pedidos
-- Cancelar pedidos
-- Gestionar estados del pedido
-- Procesar pedidos concurrentemente usando múltiples repartidores
+El sistema utiliza:
 
----
-
-## 🎯 Principios aplicados
-
-### 🔹 Programación Orientada a Objetos
-
-- **Abstracción** → Clase abstracta `Pedido`
-- **Herencia**
-  - `PedidoComida`
-  - `PedidoEncomienda`
-  - `PedidoExpress`
-- **Polimorfismo**
-  - **Override** → `asignarRepartidor()`
-  - **Overload** → `asignarRepartidor(String nombre)`
-- **Encapsulamiento**
-- **Interfaces**
-  - `Despachable`
-  - `Cancelable`
-  - `Rastreable`
+- Arquitectura en capas (DAO – Model – View)
+- Interfaz gráfica con **Java Swing**
+- Conexión a base de datos mediante **JDBC**
+- Patrón de diseño **DAO (Data Access Object)**
 
 ---
 
-### 🔹 Concurrencia y sincronización
+## 🏗️ Arquitectura del proyecto
 
-El sistema implementa procesamiento concurrente de pedidos mediante:
-
-- Uso de **Threads**
-- Clase `Repartidor` implementa `Runnable`
-- Cola sincronizada de pedidos en `ZonaCarga`
-- Métodos sincronizados:
-  ```java
-  public synchronized void agregarPedido(Pedido p)
-  public synchronized Pedido retirarPedido()
+El sistema está estructurado en los siguientes paquetes:
+SpeedFast
+│
+├── pom.xml
+├── README.md
+│
+└── src
+    └── main
+        └── java
+            └── org
+                └── pedidos
+                    ├── dao
+                    │   ├── PedidoDAO.java
+                    │   └── RepartidorDAO.java
+                    │
+                    ├── model
+                    │   ├── Pedido.java
+                    │   └── Repartidor.java
+                    │
+                    ├── view
+                    │   ├── PedidoFrame.java
+                    │   └── RepartidorFrame.java
+                    │
+                    ├── util
+                    │   └── ConexionDB.java
+                    │
+                    └── Main.java
