@@ -27,7 +27,7 @@ El sistema utiliza:
 - Patrón de diseño **DAO (Data Access Object)**
 
 ---
-"SpeedFast
+SpeedFast
 |
 |-- pom.xml
 |-- README.md
@@ -52,4 +52,4 @@ El sistema utiliza:
                     |-- util
                     |     |-- ConexionDB.java
                     |
-                    |-- Main.java"
+                    |-- Main.java
