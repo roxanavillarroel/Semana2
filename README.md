@@ -30,7 +30,6 @@ El sistema utiliza:
 
 ## 🏗️ Arquitectura del proyecto
 
-El sistema está estructurado en los siguientes paquetes:
 SpeedFast
 │
 ├── pom.xml
