@@ -1,36 +1,44 @@
 package org.pedidos;
 
-import java.util.ArrayList;
+import org.pedidos.view.RepartidorFrame;
+import org.pedidos.view.PedidoFrame;
 
-public class Main {
+import javax.swing.*;
+import java.awt.*;
+
+public class Main extends JFrame {
+
+    public Main() {
+
+        setTitle("Bienvenidos al portal Speed Fast");
+        setSize(450, 200);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout(FlowLayout.CENTER, 20, 40));
+
+        JButton btnRepartidores = new JButton("Gestionar Repartidores");
+        JButton btnPedidos = new JButton("Gestionar Pedidos");
+
+        add(btnRepartidores);
+        add(btnPedidos);
+
+        btnRepartidores.addActionListener(e -> {
+            this.setVisible(false); // Oculta menú
+            new RepartidorFrame(this).setVisible(true);
+        });
+
+        btnPedidos.addActionListener(e -> {
+            this.setVisible(false);
+            new PedidoFrame(this).setVisible(true);
+        });
+    }
+
+    public void volverAlMenu() {
+        this.setVisible(true);
+    }
+
     public static void main(String[] args) {
-        ArrayList<String> historial = new ArrayList<>();
-
-        ZonaCarga zona = new ZonaCarga();
-
-        Pedido pedido1 = new PedidoComida(202, "Cordillera de nahuelbuta #168", 2);
-        Pedido pedido2 = new PedidoEncomienda(465, "Matico #548", 7);
-        Pedido pedido3 = new PedidoExpress(303, "Avenida andalien #548", 3);
-
-        zona.agregarPedido(pedido1);
-        zona.agregarPedido(pedido2);
-        zona.agregarPedido(pedido3);
-
-        Thread r1 = new Thread(new Repartidor("Juanita Perez", zona));
-        Thread r2 = new Thread(new Repartidor("Maria Lopez", zona));
-        Thread r3 = new Thread(new Repartidor("Pedro Gomez", zona));
-
-        r1.start();
-        r2.start();
-        r3.start();
-
-        try {
-            r1.join();
-            r2.join();
-            r3.join();
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
-        System.out.println("TODOS LOS PEDIDOS HAN SIDO ENTREGADOS EXITOSAMENTE");}
-
+        SwingUtilities.invokeLater(() ->
+                new Main().setVisible(true));
+    }
 }
